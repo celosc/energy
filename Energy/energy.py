@@ -16,7 +16,7 @@ class port (object):
     def port(self, src, dst):
         '''Get port number.
 
-        @param src source switch name
+        @param src source switch name.
         @param dst destination switch name
         @return tuple (src_port, dst_port):
             src_port: port on source switch leading to the destination switch
