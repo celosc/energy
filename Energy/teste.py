@@ -1,8 +1,18 @@
-from energy import topology
+import topology, switch, host, port
 
-    s1 = topology.addSwitch('s1', dpid='0000000000000201')
-    h1 = topology.addHost('h1')
-    h2 = topology.addHost('h2')
-    topology.addLink(h1, s1)
-    topology.addLink(h2, s1)
+topo = topology.Topology()
 
+s1 = switch.Switch()
+topo.addSwitch(s1)
+
+host1 = host.Host('h1')
+host1.addPort(port.Port('AA:AA:AA:CC:CC:CC'))
+
+host2 = host.Host('h2')
+host2.addPort(port.Port('AA:AA:AA:CC:CC:CD'))
+
+s1.addPath(1, host1, host1.ports[0], bandwidth=56400.0)
+
+s1.addPath(2, host2, host2.ports[0], bandwidth=56400.0)
+
+print topo.transferTime(host1, host2, 10 * 1024 * 1024), 'seconds'
