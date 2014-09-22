@@ -14,4 +14,3 @@ class Topology(object):
                 bandwidth = lb > s.getBandWidth(host2) and s.getBandWidth(host2) or lb
                 break
         return size * 8 / bandwidth
-                
