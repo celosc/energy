@@ -9,4 +9,3 @@ class Host(object):
     def addPort(self, port):
         if port:
             self.ports.append(port)
-            
