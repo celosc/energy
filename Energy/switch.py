@@ -13,3 +13,4 @@ class Switch(object):
             if self.path[p]['host'].hostname == host.hostname:
                 return self.path[p]['bandwidth']
         return 0
+        
