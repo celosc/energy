@@ -15,4 +15,6 @@ s1.addPath(1, host1, host1.ports[0], bandwidth=56400.0)
 
 s1.addPath(2, host2, host2.ports[0], bandwidth=56400.0)
 
-print topo.transferTime(host1, host2, 10 * 1024 * 1024), 'seconds'
+print(topo.transferTime(host1, host2, 10 * 1024 * 1024), 'seconds')
+
+print(topo.consumption())

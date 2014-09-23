@@ -14,3 +14,10 @@ class Topology(object):
                 bandwidth = lb > s.getBandWidth(host2) and s.getBandWidth(host2) or lb
                 break
         return size * 8 / bandwidth
+    
+    def consumption(self):
+        consumption = 0
+        for s in self.switches:
+            consumption = consumption + s.chassi
+            consumption = consumption + s.getPortsConsumption()
+        return consumption
