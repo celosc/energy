@@ -3,7 +3,7 @@ class Switch(object):
     def __init__(self):
         self.path = {}
     
-    def addPath(self, portNumber, host, port, bandwidth=100):
+    def addPath(self, portNumber, host, port, bandwidth=10):
         if self.path.has_key(portNumber):
             raise Exception("Port already used.")
         self.path[portNumber] = {'bandwidth': bandwidth, 'host': host, 'port': port}
