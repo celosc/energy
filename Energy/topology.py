@@ -6,12 +6,12 @@ class Topology(object):
     def addSwitch(self, switch):
         self.switches.append(switch)
     
-    def transferTime(self, host1, host2, size):
+    def transferTime(self, h1, h2, size):
         bandwidth = 1000000000
         for s in self.switches:
-            lb = s.getBandWidth(host1)
-            if lb and s.getBandWidth(host2):
-                bandwidth = lb > s.getBandWidth(host2) and s.getBandWidth(host2) or lb
+            lb = s.getBandWidth(h1)
+            if lb and s.getBandWidth(h2):
+                bandwidth = lb > s.getBandWidth(h2) and s.getBandWidth(h2) or lb
                 break
         return size * 8 / bandwidth
     
