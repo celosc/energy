@@ -7,7 +7,7 @@ class Topology(object):
         self.switches.append(switch)
     
     def transferTime(self, host1, host2, size):
-        bandwidth = 1000000000000
+        bandwidth = 1000000000
         for s in self.switches:
             lb = s.getBandWidth(host1)
             if lb and s.getBandWidth(host2):
@@ -21,3 +21,5 @@ class Topology(object):
             consumption = consumption + s.chassi
             consumption = consumption + s.getPortsConsumption()
         return consumption
+    
+    
