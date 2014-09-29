@@ -7,7 +7,7 @@ class Switch(object):
     def addPath(self, portNumber, host, port, bandwidth=1000000000):
         if portNumber in self.path:
             raise Exception("Port already used.")
-        self.path[portNumber] = {'bandwidth': bandwidth, 'host': host, 'port': port}
+        self.path[portNumber] = {'host': host, 'port': port, 'bandwidth': bandwidth}
         #s1.addPath(1, h1, h1.ports[0], bandwidth=100000000)
         
 

@@ -6,7 +6,6 @@
 import topology, switch, host, port
 
 topo = topology.Topology()
-p = host.Host()
 
 s1 = switch.Switch()
 topo.addSwitch(s1)
@@ -44,6 +43,11 @@ print("O consumo de energia da simulacao foi de:", topo.consumption(), "W/H\n")
 
 print ( '*** Iniciando %s switches\n' % len( topo.switches ) )
 
-#print ( '*** Iniciando %s switches\n' % ( topo.switches ) )
+for switch in topo.switches:
+    print  (switch)
 
+
+for key in s1.path.items():
+    print (key)
+    
 
