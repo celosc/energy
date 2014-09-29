@@ -22,4 +22,33 @@ class Topology(object):
             consumption = consumption + s.getPortsConsumption()
         return consumption
     
+    def switchesForHost(self,host):
+        _s = []
+        for s in self.switches:
+            if s.hasHost(host):
+                _s.append(s)
+        return _s
     
+    def conectionsMultiHop(self,switchesHost1, switchesHost2):
+        ''' aqui tem que fazer uma função recursiva para encontrar
+        todas as possibilidades de saltos
+        '''
+        pass    
+        
+    def findpaths(self, host1, host2, threshold):
+        paths = []
+        h1s = self.switchesForHost(host1)
+        h2s = self.switchesForHost(host2)
+        for sh1 in h1s:
+            ''' look for all connections in the same switch '''
+            if sh1 in h2s:
+                b1 = sh1.getBandWidth(host1)
+                b2 = sh1.getBandWidth(host2)
+                paths.append((sh1,b1<b2 and b1 or b2,))
+        paths = paths = self.conectionsMultiHop(h1s, h2s)
+        return paths
+                
+                
+                
+                
+                

@@ -1,16 +1,17 @@
+from host import Host
+
 class Switch(object):
     
     def __init__(self):
         self.path = {}
         self.chassi = 60
     
-    def addPath(self, portNumber, host, port, bandwidth=1000000000):
+    def addConnection(self, portNumber, host, port, bandwidth=1000000000):
         if portNumber in self.path:
             raise Exception("Port already used.")
         self.path[portNumber] = {'host': host, 'port': port, 'bandwidth': bandwidth}
-        #s1.addPath(1, h1, h1.ports[0], bandwidth=100000000)
+        #s1.addConnection(1, h1, h1.ports[0], bandwidth=100000000)
         
-
     def getBandWidth(self, host):
         for p in self.path.keys():
             if self.path[p]['host'].hostname == host.hostname:
@@ -34,3 +35,9 @@ class Switch(object):
         for p in self.path:
             _r = _r + self.getConsumption(p)
         return _r
+    
+    def hasHost(self,host):
+        for p in self.path:
+            if isinstance(self.path[p]['host'], Host) and self.path[p]['host'].hostname == host.hostname:
+                return self.path[p]['bandwidth']
+        return 0

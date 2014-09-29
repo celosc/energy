@@ -25,29 +25,31 @@ h3.addPort(port.Port('AA:AA:AA:CC:CC:CE'))
 h4 = host.Host('h4')
 h4.addPort(port.Port('AA:AA:AA:CC:CC:CF'))
 
-s1.addPath(1, h1, h1.ports[0], bandwidth=100000000) # Link de 100 Mbps
+s1.addConnection(1, h1, h1.ports[0], bandwidth=100000000) # Link de 100 Mbps
 
-s1.addPath(2, h2, h2.ports[0], bandwidth=100000000) # Link de 100 Mbps
+s1.addConnection(2, h2, h2.ports[0], bandwidth=100000000) # Link de 100 Mbps
 
-s1.addPath(3, h3, h3.ports[0], bandwidth=100000000) # Link de 100 Mbps
+s1.addConnection(3, h3, h3.ports[0], bandwidth=100000000) # Link de 100 Mbps
 
-s2.addPath(1, s1, 4, bandwidth=1000000000) # Link de 1 Gbps
+s1.addConnection(4, s2, 2, bandwidth=1000000000) # Link de 1 Gbps
 
-s2.addPath(2, h4, h4.ports[0], bandwidth=100000000) # Link de 100 Mbps
+s2.addConnection(1, h4, h4.ports[0], bandwidth=100000000) # Link de 100 Mbps
 
-s2.addPath(3, s1, 5, bandwidth=1000000000) # Link de 1 Gbps
+s2.addConnection(2, s1, 4, bandwidth=1000000000) # Link de 1 Gbps
 
 #print(topo.transferTime(h1, h2, 10 * 1024 * 1024), 'seconds')
 
-print("O consumo de energia da simulacao foi de:", topo.consumption(), "W/H\n")
+topo.findpaths(h1,h2,100)
 
-print ( '*** Iniciando %s switches\n' % len( topo.switches ) )
+#print("O consumo de energia da simulacao foi de:", topo.consumption(), "W/H\n")
 
-for switch in topo.switches:
-    print  (switch)
+#print ( '*** Iniciando %s switches\n' % len( topo.switches ) )
+
+#for switch in topo.switches:
+#    print  (switch)
 
 
-for key in s1.path.items():
-    print (key)
+#for key in s1.path.items():
+#    print (key)
     
 
