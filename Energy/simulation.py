@@ -5,6 +5,7 @@
 #
 import topology, switch, host, port
 topo = topology.Topology()
+sw = switch.Switch()
 
 s1 = switch.Switch()
 topo.addSwitch(s1)
@@ -36,8 +37,11 @@ s2.addPath(1, s1, 4, bandwidth=1000000000) # Link de 1 Gbps
 
 s2.addPath(3, s1, 5, bandwidth=1000000000) # Link de 1 Gbps
 
-print(topo.transferTime(h1, h2, 10 * 1024 * 1024), 'seconds')
+#print(topo.transferTime(h1, h2, 10 * 1024 * 1024), 'seconds')
 
 print("O consumo de energia da simulacao foi de:", topo.consumption(), "W/H")
 
-#print (switch.Switch(path))
+print ( '*** Iniciando %s switches\n' % len( topo.switches ) )
+print ( '*** Iniciando %s Portas\n' % len( sw.path.keys()))
+#for switch in self.switches:
+ #   print( switch.name + ' ')

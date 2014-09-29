@@ -11,7 +11,7 @@ class Topology(object):
         for s in self.switches:
             lb = s.getBandWidth(h1)
             if lb and s.getBandWidth(h2):
-                bandwidth = lb > s.getBandWidth(h2) and s.getBandWidth(h2) or lb
+                bandwidth = lb > s.getBandWidth(hh2) and s.getBandWidth(h2) or lb
                 break
         return size * 8 / bandwidth
     
