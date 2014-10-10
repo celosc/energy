@@ -54,5 +54,3 @@ topo.findpaths(h1,h2,100)
 
 #for key in s1.path.items():
 #    print (key)
-    
-
