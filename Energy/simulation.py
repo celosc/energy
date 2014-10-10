@@ -42,7 +42,7 @@ s2.addConnection(3, h1, h1.ports[1], bandwidth=100000000)
 
 #print(topo.transferTime(h1, h2, 10 * 1024 * 1024), 'seconds')
 
-topo.findpaths(h1,h2,100)
+topo.findpaths(h1,h4,100)
 
 #print("O consumo de energia da simulacao foi de:", topo.consumption(), "W/H\n")
 

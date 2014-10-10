@@ -36,8 +36,9 @@ class Topology(object):
         paths = []
         for s in switchesHost1:
             for p in s.path:
-                if p.host in switchesHost2:
-                    paths.append((s,p['host'],))
+                port = s.path[p]
+                if port['host'] in switchesHost2:
+                    paths.append((s,port['host'],))
                 else:
                     for switchtopology in self.switches:
                         pass

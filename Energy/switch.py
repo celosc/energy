@@ -14,7 +14,7 @@ class Switch(object):
         
     def getBandWidth(self, host):
         for p in self.path.keys():
-            if self.path[p]['host'].hostname == host.hostname:
+            if self.path[p]['host'] == host:
                 return self.path[p]['bandwidth']
         return 0
 
