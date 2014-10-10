@@ -56,7 +56,3 @@ class Topology(object):
         paths = self.conectionsMultiHop(host1switches, host2switches)
         return paths
                 
-                
-                
-                
-                
