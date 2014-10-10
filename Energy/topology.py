@@ -33,19 +33,27 @@ class Topology(object):
         ''' aqui tem que fazer uma função recursiva para encontrar
         todas as possibilidades de saltos
         '''
-        pass    
+        paths = []
+        for s in switchesHost1:
+            for p in s.path:
+                if p.host in switchesHost2:
+                    paths.append((s,p['host'],))
+                else:
+                    for switchtopology in self.switches:
+                        pass
+                    
         
     def findpaths(self, host1, host2, threshold):
         paths = []
-        h1s = self.switchesForHost(host1)
-        h2s = self.switchesForHost(host2)
-        for sh1 in h1s:
+        host1switches = self.switchesForHost(host1)
+        host2switches = self.switchesForHost(host2)
+        for sh1 in host1switches:
             ''' look for all connections in the same switch '''
-            if sh1 in h2s:
+            if sh1 in host2switches:
                 b1 = sh1.getBandWidth(host1)
                 b2 = sh1.getBandWidth(host2)
                 paths.append((sh1,b1<b2 and b1 or b2,))
-        paths = paths = self.conectionsMultiHop(h1s, h2s)
+        paths = self.conectionsMultiHop(host1switches, host2switches)
         return paths
                 
                 

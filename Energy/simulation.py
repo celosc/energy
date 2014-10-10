@@ -15,6 +15,7 @@ topo.addSwitch(s2)
 
 h1 = host.Host('h1')
 h1.addPort(port.Port('AA:AA:AA:CC:CC:CC'))
+h1.addPort(port.Port('AA:AA:AA:AC:CC:CC'))
 
 h2 = host.Host('h2')
 h2.addPort(port.Port('AA:AA:AA:CC:CC:CD'))
@@ -36,6 +37,8 @@ s1.addConnection(4, s2, 2, bandwidth=1000000000) # Link de 1 Gbps
 s2.addConnection(1, h4, h4.ports[0], bandwidth=100000000) # Link de 100 Mbps
 
 s2.addConnection(2, s1, 4, bandwidth=1000000000) # Link de 1 Gbps
+
+s2.addConnection(3, h1, h1.ports[1], bandwidth=100000000)
 
 #print(topo.transferTime(h1, h2, 10 * 1024 * 1024), 'seconds')
 
