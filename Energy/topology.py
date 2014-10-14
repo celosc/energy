@@ -1,3 +1,7 @@
+_10M = 10000000
+_100M = 100000000
+_1G = 1000000000
+
 class Topology(object):
     
     def __init__(self):
@@ -7,7 +11,7 @@ class Topology(object):
         self.switches.append(switch)
     
     def transferTime(self, h1, h2, size):
-        bandwidth = 1000000000
+        bandwidth = _1G
         for s in self.switches:
             lb = s.getBandWidth(h1)
             if lb and s.getBandWidth(h2):
@@ -39,7 +43,10 @@ class Topology(object):
                 if host1 not in caller: caller.append(host1)
                 b1 = sh1.getBandWidth(host1)
                 b2 = sh1.getBandWidth(host2)
-                paths.append((sh1,b1<b2 and b1 or b2,caller,))
+                seq = list(caller)
+                seq.append(sh1)
+                seq.append(host2)
+                paths.append((seq,b1<b2 and totext(b1) or tostrtext(b2),))
             else:
                 hasitself = False
                 for hidx in sh1.path:
@@ -51,4 +58,25 @@ class Topology(object):
                     _paths = self.findpaths(sh1, host2, threshold, list(caller))
                     paths = paths + _paths                
         return paths
-                
+    
+def totext(size):
+    if size / 1000 < 1:            
+        return str(size)
+    elif size / 1000 / 1000 < 1:
+        size = size / 1000
+        r = ''
+        if (size) % 1 > 0:
+            r = '.'+str(size%1000)            
+        return str(int(size))+r+'K'
+    elif size / 1000 / 1000 / 1000 < 1:
+        size = size / 1000 / 1000
+        r = ''
+        if (size) % 1 > 0:
+            r = '.'+str(size%1000)            
+        return str(int(size))+r+'M'
+    else:
+        size = size / 1000 / 1000 / 1000
+        r = ''
+        if (size) % 1 > 0:
+            r = '.'+str(size%1000)            
+        return str(int(size))+r+'G'
