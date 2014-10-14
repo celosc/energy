@@ -1,4 +1,4 @@
-from Onboard.ConfigUtils import _PACK_HOOK
+#from Onboard.ConfigUtils import _PACK_HOOK
 class Topology(object):
     
     def __init__(self):
@@ -50,6 +50,7 @@ class Topology(object):
                 if not hasitself and sh1 not in caller:
                     caller.append(host1)
                     _paths = self.findpaths(sh1, host2, threshold, caller)
+                    _paths.append(caller)
                     paths = paths + _paths                
         #paths = paths + self.conectionsMultiHop(host1switches, host2switches)
         return paths
