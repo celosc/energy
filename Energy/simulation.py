@@ -15,6 +15,7 @@ topo.addSwitch(s2)
 
 s3 = switch.Switch("s3")
 topo.addSwitch(s3)
+#s3.chassi=100
 
 h1 = host.Host('h1')
 h1.addPort(port.Port('AA:AA:AA:CC:CC:CC'))
@@ -56,6 +57,8 @@ s2.addConnection(4, s1, 5, bandwidth=topology._100M) # Link de 1 Gbps
 p = topo.findpaths(h1,h4,topology._1G)
 
 print(str(p))
+
+print("\n")
 
 print("O consumo de energia da simulacao foi de:", topo.consumption(), "W/H\n")
 
