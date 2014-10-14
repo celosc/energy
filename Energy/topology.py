@@ -1,4 +1,3 @@
-from Onboard.ConfigUtils import _PACK_HOOK
 class Topology(object):
     
     def __init__(self):
@@ -31,16 +30,16 @@ class Topology(object):
         return _s
         
     def findpaths(self, host1, host2, threshold, caller=[]):
-        print("host1:"+str(host1)+", host2:"+str(host2))
         paths = []
         host1switches = self.switchesForHost(host1)
         host2switches = self.switchesForHost(host2)
         for sh1 in host1switches:
             ''' look for all connections in the same switch '''
             if sh1 in host2switches:
+                if host1 not in caller: caller.append(host1)
                 b1 = sh1.getBandWidth(host1)
                 b2 = sh1.getBandWidth(host2)
-                paths.append((sh1,b1<b2 and b1 or b2,))
+                paths.append((sh1,b1<b2 and b1 or b2,caller,))
             else:
                 hasitself = False
                 for hidx in sh1.path:
@@ -48,9 +47,8 @@ class Topology(object):
                         hasitself = True
                         break
                 if not hasitself and sh1 not in caller:
-                    caller.append(host1)
-                    _paths = self.findpaths(sh1, host2, threshold, caller)
+                    if host1 not in caller: caller.append(host1)
+                    _paths = self.findpaths(sh1, host2, threshold, list(caller))
                     paths = paths + _paths                
-        #paths = paths + self.conectionsMultiHop(host1switches, host2switches)
         return paths
                 

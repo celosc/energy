@@ -49,7 +49,7 @@ s2.addConnection(2, s3, 2, bandwidth=1000000000) # Link de 1 Gbps
 
 s2.addConnection(3, h1, h1.ports[1], bandwidth=10000000)
 
-s2.addConnection(4, s1, 5, bandwidth=1000000000) # Link de 1 Gbps
+s2.addConnection(4, s1, 5, bandwidth=100000000) # Link de 1 Gbps
 
 #print(topo.transferTime(h1, h2, 10 * 1024 * 1024), 'seconds')
 

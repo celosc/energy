@@ -8,7 +8,11 @@ class Switch(object):
         self.name = name
     
     def __repr__(self):
-        return "%s(%r)" % (self.name, self.__dict__)
+        #return "%s(%r)" % (self.name, self.__dict__)
+        return "%s" % (self.name)
+    
+    def __str__(self):
+        return self.name
    
     def addConnection(self, portNumber, host, port, bandwidth=1000000000):
         if portNumber in self.path:
