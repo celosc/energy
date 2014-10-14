@@ -2,10 +2,14 @@ from host import Host
 
 class Switch(object):
     
-    def __init__(self):
+    def __init__(self,name):
         self.path = {}
         self.chassi = 60
+        self.name = name
     
+    def __repr__(self):
+        return "%s(%r)" % (self.name, self.__dict__)
+   
     def addConnection(self, portNumber, host, port, bandwidth=1000000000):
         if portNumber in self.path:
             raise Exception("Port already used.")
@@ -38,6 +42,7 @@ class Switch(object):
     
     def hasHost(self,host):
         for p in self.path:
-            if isinstance(self.path[p]['host'], Host) and self.path[p]['host'].hostname == host.hostname:
+            #if isinstance(self.path[p]['host'], Host) and self.path[p]['host'].hostname == host.hostname:
+            if self.path[p]['host'] == host:
                 return self.path[p]['bandwidth']
         return 0

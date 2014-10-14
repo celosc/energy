@@ -6,6 +6,9 @@ class Host(object):
         for p in ports:
             self.ports.append(p)
     
+    def __repr__(self):
+        return "%s(%r)" % (self.hostname, self.__dict__)
+    
     def addPort(self, port):
         if port:
             self.ports.append(port)

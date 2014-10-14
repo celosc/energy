@@ -1,3 +1,4 @@
+from Onboard.ConfigUtils import _PACK_HOOK
 class Topology(object):
     
     def __init__(self):
@@ -28,23 +29,9 @@ class Topology(object):
             if s.hasHost(host):
                 _s.append(s)
         return _s
-    
-    def conectionsMultiHop(self,switchesHost1, switchesHost2):
-        ''' aqui tem que fazer uma função recursiva para encontrar
-        todas as possibilidades de saltos
-        '''
-        paths = []
-        for s in switchesHost1:
-            for p in s.path:
-                port = s.path[p]
-                if port['host'] in switchesHost2:
-                    paths.append((s,port['host'],))
-                else:
-                    for switchtopology in self.switches:
-                        pass
-                    
         
-    def findpaths(self, host1, host2, threshold):
+    def findpaths(self, host1, host2, threshold, caller=[]):
+        print("host1:"+str(host1)+", host2:"+str(host2))
         paths = []
         host1switches = self.switchesForHost(host1)
         host2switches = self.switchesForHost(host2)
@@ -54,6 +41,16 @@ class Topology(object):
                 b1 = sh1.getBandWidth(host1)
                 b2 = sh1.getBandWidth(host2)
                 paths.append((sh1,b1<b2 and b1 or b2,))
-        paths = self.conectionsMultiHop(host1switches, host2switches)
+            else:
+                hasitself = False
+                for hidx in sh1.path:
+                    if sh1.path[hidx] == host2:
+                        hasitself = True
+                        break
+                if not hasitself and sh1 not in caller:
+                    caller.append(host1)
+                    _paths = self.findpaths(sh1, host2, threshold, caller)
+                    paths = paths + _paths                
+        #paths = paths + self.conectionsMultiHop(host1switches, host2switches)
         return paths
                 
