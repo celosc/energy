@@ -46,7 +46,8 @@ class Topology(object):
                 seq = list(caller)
                 seq.append(sh1)
                 seq.append(host2)
-                paths.append((seq,b1<b2 and totext(b1) or tostrtext(b2),))
+                #paths.append((seq,b1<b2 and totext(b1) or tostrtext(b2),))
+                paths.append((seq,b1<b2 and totext(b1)))
             else:
                 hasitself = False
                 for hidx in sh1.path:
